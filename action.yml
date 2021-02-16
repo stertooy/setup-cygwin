@@ -1,0 +1,49 @@
+name: 'Setup cygwin for a GAP installation'
+description: 'Download and install cygwin such that GAP can be installed afterwards'
+inputs:
+  PKGS_TO_INSTALL:
+    description: 'the packages to install'
+    required: false
+    default: 'wget,git,gcc,gcc-g++,gcc-core,m4,libgmp-devel,make,automake,libtool,autoconf,autoconf2.5,zlib-devel,libreadline-devel'
+runs:
+  using: "composite"
+  steps:
+    # This sets git to use Linux line endings. While GAP should allow
+    # Windows line endings in GAP files, we currently can't build GAP if the
+    # whole source has Windows line endings
+    - name: Set git to use LF
+      run: |
+        git config --global core.autocrlf false
+        git config --global core.eol lf
+
+    - name: Download cygwin
+      run: |
+        & cmd /c 'nslookup www.cygwin.com 2>&1'
+        while ($true)
+        {
+            try
+            {
+                (New-Object Net.WebClient).DownloadFile('http://www.cygwin.com/setup-x86_64.exe', 'setup-x86_64.exe')
+                break
+            }
+            catch
+            {
+                Write-Host "There is an error during package downloading:`n $_"
+            }
+        }
+        & cmd /c 'nslookup www.cygwin.com 8.8.8.8 2>&1'
+      shell: powershell
+    - name: Install cygwin
+      run: |
+        @ECHO ON
+        SET CYGROOT=C:\cygwin64
+        SET CYGCACHE=%CYGROOT%\var\cache\setup
+        setup-x86_64.exe -qnNdO -R %CYGROOT% -l %CYGCACHE% -s %CYGMIRROR% -P ${{ inputs.PKGS_TO_INSTALL }}
+      env:
+        CYGMIRROR: "http://mirror.easyname.at/cygwin"
+      shell: cmd
+
+    - name: Set up cygwin profile
+      run: |
+        C:\cygwin64\bin\bash -l -c bash
+      shell: cmd
