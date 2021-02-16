@@ -1,18 +1,12 @@
 # setup-cygwin-for-gap
 
-This GitHub action downloads and prepares an instance of GAP.
-It is intended to be used by the Continuous Integration (CI) action of a GAP
-package, that is by an action which runs a package's test suite.
+This GitHub action downloads and prepares an instance of cygwin for the use
+with GAP.
 
 ## Usage
 
-The action `setup-cygwin-for-gap` has to be called by the workflow of a GAP
-package `gap-package`.
-By default it
-- downloads and compiles the master branch of GAP,
-- downloads the packages distributed with GAP,
-- compiles the packages `io` and `profiling`, and
-- if necessary, compiles `gap-package`.
+By default it downloads and installs cygwin and downloads packages needed to
+compile and run GAP.
 
 Its behaviour can be customized via the inputs below.
 
