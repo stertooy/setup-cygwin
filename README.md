@@ -15,8 +15,11 @@ Its behaviour can be customized via the inputs below.
 All of the following inputs are optional.
 
 - `PKGS_TO_INSTALL`:
-    - The packages to install
+    - A comma separated list of packages to install
     - default: `'wget,git,gcc,gcc-g++,gcc-core,m4,libgmp-devel,make,automake,libtool,autoconf,autoconf2.5,zlib-devel,libreadline-devel'`
+- `EXTRA_PKGS_TO_INSTALL`:
+    - A comma separated list of additional packages to install
+    - default: `''`
 
 ## Contact
 Please submit bug reports, suggestions for improvements and patches via
