@@ -1,4 +1,4 @@
-# setup-cygwin-for-gap
+# setup-cygwin
 
 This GitHub action downloads and prepares an instance of cygwin for the use
 with GAP.
@@ -20,12 +20,12 @@ All of the following inputs are optional.
 
 ## Contact
 Please submit bug reports, suggestions for improvements and patches via
-the [issue tracker](https://github.com/gap-actions/setup-cygwin-for-gap/issues)
+the [issue tracker](https://github.com/gap-actions/setup-cygwin/issues)
 or via email to
 [Sergio Siccha](mailto:siccha@mathematik.uni-kl.de).
 
 ## License
-The action `setup-cygwin-for-gap` is free software; you can redistribute
+The action `setup-cygwin` is free software; you can redistribute
 and/or modify it under the terms of the GNU General Public License as published
 by the Free Software Foundation; either version 2 of the License, or (at your
 opinion) any later version. For details, see the file `LICENSE` distributed
