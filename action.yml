@@ -43,3 +43,8 @@ runs:
       run: |
         C:\cygwin64\bin\bash -l -c bash
       shell: cmd
+    
+    # cygwin provides 'make' but not 'gmake', and there is another executable called 'gmake' elsewhere in the windows build.
+    - name: Set up 'gmake' symlink
+      run: ln -s /usr/bin/make /usr/bin/gmake
+      shell: C:\cygwin64\bin\bash.exe --login --norc -o igncr '{0}'
