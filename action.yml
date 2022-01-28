@@ -4,7 +4,7 @@ inputs:
   PKGS_TO_INSTALL:
     description: 'the packages to install'
     required: false
-    default: 'wget,git,gcc,gcc-g++,gcc-core,m4,libgmp-devel,make,automake,libtool,autoconf,autoconf2.5,zlib-devel,libreadline-devel'
+    default: 'wget,git,gcc,gcc-g++,gcc-core,m4,libgmp-devel,make,automake,libtool,autoconf,autoconf2.5,zlib-devel,libreadline-devel,libmpc-devel,libmpfr-devel'
   EXTRA_PKGS_TO_INSTALL:
     description: 'extra packages to install'
     required: false
