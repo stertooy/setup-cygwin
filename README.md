@@ -23,9 +23,7 @@ All of the following inputs are optional.
 
 ## Contact
 Please submit bug reports, suggestions for improvements and patches via
-the [issue tracker](https://github.com/gap-actions/setup-cygwin/issues)
-or via email to
-[Sergio Siccha](mailto:siccha@mathematik.uni-kl.de).
+the [issue tracker](https://github.com/gap-actions/setup-cygwin/issues).
 
 ## License
 The action `setup-cygwin` is free software; you can redistribute
