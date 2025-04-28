@@ -1,4 +1,4 @@
-# setup-cygwin
+# setup-cygwin V2
 
 This GitHub action downloads and prepares an instance of cygwin for the use
 with GAP.
@@ -14,11 +14,11 @@ Its behaviour can be customized via the inputs below.
 
 All of the following inputs are optional.
 
-- `PKGS_TO_INSTALL`:
-    - A comma separated list of packages to install
-    - default: `'wget,git,gcc-g++,gcc-core,m4,libgmp-devel,make,automake,libtool,autoconf,autoconf2.5,zlib-devel,libreadline-devel,libmpc-devel,libmpfr-devel,xdg-utils'`
-- `EXTRA_PKGS_TO_INSTALL`:
-    - A comma separated list of additional packages to install
+- `pkgs-to-install`:
+    - Comma-separated list containing the Cygwin packages needed to install GAP
+    - default: `'wget,git,gcc-g++,gcc-core,libgmp-devel,make,libtool,autoconf,zlib-devel,libreadline-devel'`
+- `extra-pkgs-to-install`:
+    - Comma-separated list containing the extra Cygwin packages needed to install additional packages
     - default: `''`
 
 ## Contact
