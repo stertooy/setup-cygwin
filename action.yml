@@ -1,50 +1,45 @@
-name: 'Setup cygwin for a GAP installation'
-description: 'Download and install cygwin such that GAP can be installed afterwards'
+name: 'Setup Cygwin for a GAP installation'
+description: 'Download and install Cygwin such that GAP can be installed afterwards'
 inputs:
-  PKGS_TO_INSTALL:
-    description: 'the packages to install'
+  pkgs-to-install:
+    description: 'Comma-separated list containing the Cygwin packages needed to install GAP'
     required: false
-    default: 'wget,git,gcc-g++,gcc-core,m4,libgmp-devel,make,automake,libtool,autoconf,autoconf2.5,zlib-devel,libreadline-devel,libmpc-devel,libmpfr-devel,xdg-utils'
-  EXTRA_PKGS_TO_INSTALL:
-    description: 'extra packages to install'
+    default: 'wget,git,gcc-g++,gcc-core,libgmp-devel,make,libtool,autoconf,zlib-devel,libreadline-devel'
+  extra-pkgs-to-install:
+    description: 'Comma-separated list containing the extra Cygwin packages needed to install additional packages'
     required: false
     default: ''
+    
 runs:
   using: "composite"
   steps:
-    - name: Download cygwin
-      run: |
-        & cmd /c 'nslookup www.cygwin.com 2>&1'
-        while ($true)
-        {
-            try
-            {
-                (New-Object Net.WebClient).DownloadFile('http://www.cygwin.com/setup-x86_64.exe', 'setup-x86_64.exe')
-                break
-            }
-            catch
-            {
-                Write-Host "There is an error during package downloading:`n $_"
-            }
-        }
-        & cmd /c 'nslookup www.cygwin.com 8.8.8.8 2>&1'
-      shell: powershell
-    - name: Install cygwin
-      run: |
-        @ECHO ON
-        SET CYGROOT=C:\cygwin64
-        SET CYGCACHE=%CYGROOT%\var\cache\setup
-        setup-x86_64.exe -qnNdO -R %CYGROOT% -l %CYGCACHE% -s %CYGMIRROR% -P ${{ inputs.PKGS_TO_INSTALL }},${{ inputs.EXTRA_PKGS_TO_INSTALL }}
-      env:
-        CYGMIRROR: "http://mirror.easyname.at/cygwin"
-      shell: cmd
 
-    - name: Set up cygwin profile
-      run: |
-        C:\cygwin64\bin\bash -l -c bash
+    - name: "Configure git autocrlf to input"
       shell: cmd
+      run: git config --global core.autocrlf input
+
+    - name: "Download and install Cygwin"
+      uses: cygwin/cygwin-install-action@v5
+      with:
+        packages: "${{ inputs.pkgs-to-install}},${{ inputs.extra-pkgs-to-install }}"
+        add-to-path: false
+        install-dir: C:\cygwin64
+
+    - name: "Add bash with correct options to PATH"
+      shell: powershell
+      run: |
+        mkdir C:\cygwin-bash-folder
+        $executable = @"
+        @echo off
+        set CHERE_INVOKING=1
+        for %%a in (%*) do set file=%%a
+        C:\cygwin64\bin\bash.exe --login -e -o pipefail -o igncr %file%
+        exit /b %errorlevel%
+        "@
+        Set-Content C:\cygwin-bash-folder\bash.bat $executable -Encoding utf8 
+        echo "C:\cygwin-bash-folder" >> $env:GITHUB_PATH
     
     # cygwin provides 'make' but not 'gmake', and there is another executable called 'gmake' elsewhere in the windows build.
-    - name: Set up 'gmake' symlink
+    - name: "Set up 'gmake' symlink"
+      shell: bash
       run: ln -s /usr/bin/make /usr/bin/gmake
-      shell: C:\cygwin64\bin\bash.exe --login --norc -o igncr '{0}'
