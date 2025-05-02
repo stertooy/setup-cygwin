@@ -16,7 +16,7 @@ All of the following inputs are optional.
 
 - `pkgs-to-install`:
     - Comma-separated list containing the Cygwin packages needed to install GAP
-    - default: `'wget,git,gcc-g++,gcc-core,libgmp-devel,make,libtool,autoconf,zlib-devel,libreadline-devel'`
+    - default: `'wget,git,gcc-g++,gcc-core,libgmp-devel,make,libtool,autoconf,zlib-devel,libreadline-devel,xdg-utils'`
 - `extra-pkgs-to-install`:
     - Comma-separated list containing the extra Cygwin packages needed to install additional packages
     - default: `''`
