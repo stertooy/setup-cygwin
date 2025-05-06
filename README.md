@@ -1,4 +1,4 @@
-# setup-cygwin V2
+# setup-cygwin
 
 This GitHub action downloads and prepares an instance of cygwin for the use
 with GAP.
