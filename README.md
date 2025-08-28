@@ -21,6 +21,16 @@ All of the following inputs are optional.
     - Comma-separated list containing the extra Cygwin packages needed to install additional packages
     - default: `''`
 
+### What's new in v2
+
+In v2 most of the implementation of this action has been rewritten. While this
+by itself should not cause issues in an ideal world, we can not guarantee this
+100%, but we recommend you just try it (and if there is a problem, report the
+issue and possibly revert to v1).
+
+Moreover the `EXTRA_PKGS_TO_INSTALL` input was renamed to `extra-pkgs-to-install`,
+and `PKGS_TO_INSTALL` was renamed to `pkgs-to-install`.
+
 ## Contact
 Please submit bug reports, suggestions for improvements and patches via
 the [issue tracker](https://github.com/gap-actions/setup-cygwin/issues).
