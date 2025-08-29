@@ -19,7 +19,7 @@ runs:
       run: git config --global core.autocrlf input
 
     - name: "Download and install Cygwin"
-      uses: cygwin/cygwin-install-action@v5
+      uses: cygwin/cygwin-install-action@v6
       with:
         packages: "${{ inputs.pkgs-to-install}},${{ inputs.extra-pkgs-to-install }}"
         add-to-path: false
