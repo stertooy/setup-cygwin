@@ -4,12 +4,12 @@ inputs:
   pkgs-to-install:
     description: 'Comma-separated list containing the Cygwin packages needed to install GAP'
     required: false
-    default: 'wget,git,gcc-g++,gcc-core,libgmp-devel,make,libtool,autoconf,zlib-devel,libreadline-devel,xdg-utils'
+    default: 'wget,git,gcc-g++,gcc-core,libgmp-devel,make,libtool,autoconf,zlib-devel,libreadline-devel,xdg-utils,automake'
   extra-pkgs-to-install:
     description: 'Comma-separated list containing the extra Cygwin packages needed to install additional packages'
     required: false
     default: ''
-    
+
 runs:
   using: "composite"
   steps:
@@ -36,7 +36,7 @@ runs:
         C:\cygwin64\bin\bash.exe --login --norc -e -o pipefail -o igncr %file%
         exit /b %errorlevel%
         "@
-        Set-Content C:\cygwin-bash-folder\bash.bat $executable -Encoding utf8 
+        Set-Content C:\cygwin-bash-folder\bash.bat $executable -Encoding utf8
         echo "C:\cygwin-bash-folder" >> $env:GITHUB_PATH
     
     # cygwin provides 'make' but not 'gmake', and there is another executable called 'gmake' elsewhere in the windows build.
