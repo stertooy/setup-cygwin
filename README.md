@@ -51,7 +51,6 @@ jobs:
     steps:
       - uses: actions/checkout@v6
       - uses: gap-actions/setup-cygwin@v2
-      - uses: gap-actions/setup-gap@v3
       # ... additional steps using GAP will usually follow here
 ```
 
