@@ -24,6 +24,9 @@ runs:
         packages: "${{ inputs.pkgs-to-install}},${{ inputs.extra-pkgs-to-install }}"
         add-to-path: false
         install-dir: C:\cygwin64
+        site: |
+          http://mirrors.kernel.org/sourceware/cygwin/
+          https://www.mirrorservice.org/sites/sourceware.org/pub/cygwin/
 
     - name: "Add bash with correct options to PATH"
       shell: powershell
