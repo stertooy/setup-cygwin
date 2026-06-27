@@ -49,7 +49,7 @@ jobs:
     runs-on: windows-latest
 
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
       - uses: gap-actions/setup-cygwin@v2
       # ... additional steps using GAP will usually follow here
 ```
