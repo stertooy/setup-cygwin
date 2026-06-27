@@ -19,7 +19,7 @@ jobs:
         extra-pkgs: ['', 'vim']
 
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
       - uses: ./
         with:
           extra-pkgs-to-install: ${{ matrix.extra-pkgs }}
